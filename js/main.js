@@ -17,7 +17,34 @@ class GameScene extends Phaser.Scene
         this.laberinto.setScale(0.8);
         this.player = this.add.image(400, 300, 'player');
         this.player.setScale(1);
-        this.cursors = this.input.keyboard.createCursorKeys();
+        this.tiempo =60;
+        
+         //tiempo
+    this.tiempoText = this.add.text(650, 10, 'Tiempo:', {
+        fontSize: '20px',
+        fill: '#000000',
+        backgroundColor:' #00ff00',
+        align: 'right',
+        padding: {x:20, y:10},
+        borderRadius: 20
+    });
+
+    this.time.addEvent({
+        delay: 1000,
+        callback: () => {
+            if (!this.gameOver) {
+                this.tiempo--;
+                this.tiempoText.setText('Tiempo: ' + this.tiempo);
+
+                if (this.tiempo <= 0) {
+                    this.terminarJuego();
+                }
+            }
+        },
+        loop: true // hace que se repita
+    });
+
+    this.cursors = this.input.keyboard.createCursorKeys();
     }
 
     update(){
