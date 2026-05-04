@@ -71,7 +71,6 @@ class GameScene extends Phaser.Scene
     this.player.y= Phaser.Math.Clamp(this.player.y, 20, 580);
     }
 }
-
 const config = {
     type: Phaser.AUTO,
     parent: 'game-container',
