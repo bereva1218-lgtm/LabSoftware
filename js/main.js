@@ -18,66 +18,93 @@ class GameScene extends Phaser.Scene
         this.player = this.add.image(400, 300, 'player');
         this.player.setScale(1);
         this.tiempo =60;
+        this.gameOver = false;
         
-         //tiempo
-    this.tiempoText = this.add.text(650, 10, 'Tiempo:', {
-        fontSize: '20px',
-        fill: '#000000',
-        backgroundColor:' #00ff00',
-        align: 'right',
-        padding: {x:20, y:10},
-        borderRadius: 20
-    });
+        //tiempo
+        this.tiempoText = this.add.text(650, 10, 'Tiempo:', {
+            fontSize: '20px',
+            fill: '#000000',
+            backgroundColor:' #00ff00',
+            align: 'right',
+            padding: {x:20, y:10},
+            borderRadius: 20
+        });
 
-    this.time.addEvent({
-        delay: 1000,
-        callback: () => {
-            if (!this.gameOver) {
-                this.tiempo--;
-                this.tiempoText.setText('Tiempo: ' + this.tiempo);
+        this.time.addEvent({
+            delay: 1000,
+            callback: () => {
+                if (!this.gameOver) {
+                    this.tiempo--;
+                    this.tiempoText.setText('Tiempo: ' + this.tiempo);
 
-                if (this.tiempo <= 0) {
-                    this.terminarJuego();
+                    if (this.tiempo <= 0) {
+                        this.terminarJuego();
+                    }
                 }
-            }
-        },
-        loop: true // hace que se repita
-    });
+            },
+            loop: true
+        });
 
-    this.cursors = this.input.keyboard.createCursorKeys();
+        // Botón Volver al Menú
+        let botonMenu = this.add.text(100, 10, 'MENÚ', {
+            fontSize: '20px',
+            fill: '#000',
+            backgroundColor: '#00ff00',
+            padding: { x: 15, y: 8 },
+            borderRadius: 10
+        }).setOrigin(0, 0).setInteractive();
+
+        botonMenu.on('pointerdown', () => {
+            this.scene.start('MenuScene');
+        });
+
+        botonMenu.on('pointerover', () => {
+            botonMenu.setStyle({ fill: 'rgb(255, 0, 0)' });
+        });
+
+        botonMenu.on('pointerout', () => {
+            botonMenu.setStyle({ fill: '#000' });
+        });
+
+        this.cursors = this.input.keyboard.createCursorKeys();
+    }
+
+    terminarJuego() {
+        this.gameOver = true;
+        this.scene.start('Creditos', { score: 100 });
     }
 
     update(){
-    
-    //para que no se pueda jugar al salir el game over
-    if (this.gameOver) return;
+        //para que no se pueda jugar al salir el game over
+        if (this.gameOver) return;
 
-    //movimiento jugador
-    if(this.cursors.left.isDown){
-        this.player.x -= 3;
-    }
-    else if(this.cursors.right.isDown){
-        this.player.x += 3;
-    }
+        //movimiento jugador
+        if(this.cursors.left.isDown){
+            this.player.x -= 3;
+        }
+        else if(this.cursors.right.isDown){
+            this.player.x += 3;
+        }
 
-    if(this.cursors.up.isDown){
-        this.player.y -= 3;
-    }
-    else if(this.cursors.down.isDown){
-        this.player.y += 3;
-    }
-    
-    this.player.x= Phaser.Math.Clamp(this.player.x, 20, 780); // se delimita el movimiento del jugador para que no salga de la pantalla
-    this.player.y= Phaser.Math.Clamp(this.player.y, 20, 580);
+        if(this.cursors.up.isDown){
+            this.player.y -= 3;
+        }
+        else if(this.cursors.down.isDown){
+            this.player.y += 3;
+        }
+        
+        this.player.x= Phaser.Math.Clamp(this.player.x, 20, 780);
+        this.player.y= Phaser.Math.Clamp(this.player.y, 20, 580);
     }
 }
+
 const config = {
     type: Phaser.AUTO,
     parent: 'game-container',
-    width: 1200,
+    width: 800,
     height: 600,
     backgroundColor: '#000000',
-    scene: GameScene,
+    scene: [MenuScene, GameScene, Creditos],
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH

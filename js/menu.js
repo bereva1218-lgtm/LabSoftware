@@ -4,7 +4,8 @@ class MenuScene extends Phaser.Scene {
         super({ key: 'MenuScene' });
     }
     preload(){
-    this.load.image('player', 'https://labs.phaser.io/assets/sprites/phaser-dude.png')
+        /*this.load.image('player', 'https://labs.phaser.io/assets/sprites/phaser-dude.png');
+        this.load.image('ghost', 'https://labs.phaser.io/assets/sprites/ghost.png'); */
     }
 
     create(){
@@ -12,15 +13,16 @@ class MenuScene extends Phaser.Scene {
         this.cameras.main.setBackgroundColor('#24252A');
 
         //titulo
-        this.add.text(400, 100, '¡THE MAZE!',{
-        fontSize: '42px', 
+        this.add.text(400, 100, '¡WELCOME TO \n THE MAZE!',{
+        fontSize: '42px',
+        textAlign: 'center',
         fill: '#fff',
         fontStyle: 'bold',
         align: 'center'
         }).setOrigin(0.5, 0);
 
         //Añadir imagen
-        this.add.image(400, 260, 'ghost').setScale(0.4).setOrigin(0.5, 0.8);
+        //this.add.image(400, 260, 'ghost').setScale(0.4).setOrigin(0.5, 0.8);
 
         //Añadir instrucciones
 
@@ -30,36 +32,46 @@ class MenuScene extends Phaser.Scene {
         align: 'center'
         }).setOrigin(0.5, 0.5); // lo baje un poquito para que no se superponga con la imagen o se choquen mucho
 
-        //bton
- let boton= this.add.text(400, 430, 'JUGAR', {
+        //Botón Jugar
+        let botonJugar = this.add.text(400, 400, 'JUGAR', {
             fontSize: '32px', 
             fill: '#000',
             backgroundColor: '#fff',
             padding: { x: 20, y: 10 },
             borderRadius: 35
-        }).setOrigin(0.5, 0.1).setInteractive(); // para que el btn sea funcional
+        }).setOrigin(0.5, 0.5).setInteractive();
 
-        boton.on('pointerdown', () =>{
+        botonJugar.on('pointerdown', () =>{
             this.scene.start('GameScene');
         });
 
-        boton.on('pointerover', () =>{
-            boton.setStyle({ fill: 'rgb(255, 0, 0)' });
+        botonJugar.on('pointerover', () =>{
+            botonJugar.setStyle({ fill: 'rgb(255, 221, 27)' });
         })
 
-        boton.on('pointerout', () =>{
-            boton.setStyle({ fill: '#00ff00' });
+        botonJugar.on('pointerout', () =>{
+            botonJugar.setStyle({ fill: '#000' });
         });
 
+        //Botón Ver Créditos
+        let botonCreditos = this.add.text(400, 470, 'VER CRÉDITOS', {
+            fontSize: '24px',
+            fill: '#000',
+            backgroundColor: '#00ff00',
+            padding: { x: 15, y: 8 },
+            borderRadius: 25
+        }).setOrigin(0.5, 0.5).setInteractive();
+
+        botonCreditos.on('pointerdown', () =>{
+            this.scene.start('Creditos');
+        });
+
+        botonCreditos.on('pointerover', () =>{
+            botonCreditos.setStyle({ fill: 'rgb(255, 255, 255)' });
+        })
+
+        botonCreditos.on('pointerout', () =>{
+            botonCreditos.setStyle({ fill: '#000' });
+        });
     }
 }
-
-const config = {
-    type: Phaser.AUTO,
-    width: 800,
-    height: 600,
-    parent: 'game-container',
-    scene: MenuScene
-};
-
-new Phaser.Game(config);
