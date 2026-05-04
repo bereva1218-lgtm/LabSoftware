@@ -13,7 +13,7 @@ class GameScene extends Phaser.Scene
 
     create () 
     {
-        this.laberinto = this.add.image(600, 300, 'laberinto');
+        this.laberinto = this.add.image(400, 300, 'laberinto');
         this.laberinto.setScale(0.8);
         this.player = this.add.image(400, 300, 'player');
         this.player.setScale(1);
@@ -21,12 +21,12 @@ class GameScene extends Phaser.Scene
         this.gameOver = false;
         
         //tiempo
-        this.tiempoText = this.add.text(650, 10, 'Tiempo:', {
+        this.tiempoText = this.add.text(550, 10, 'Tiempo:', {
             fontSize: '20px',
             fill: '#000000',
             backgroundColor:' #00ff00',
             align: 'right',
-            padding: {x:20, y:10},
+            padding: {x: 10, y: 10},
             borderRadius: 20
         });
 
@@ -46,7 +46,7 @@ class GameScene extends Phaser.Scene
         });
 
         // Botón Volver al Menú
-        let botonMenu = this.add.text(100, 10, 'MENÚ', {
+        let botonMenu = this.add.text(100, 10, 'Menú', {
             fontSize: '20px',
             fill: '#000',
             backgroundColor: '#00ff00',
@@ -59,7 +59,7 @@ class GameScene extends Phaser.Scene
         });
 
         botonMenu.on('pointerover', () => {
-            botonMenu.setStyle({ fill: 'rgb(255, 0, 0)' });
+            botonMenu.setStyle({ fill: 'rgb(255, 255, 255)' });
         });
 
         botonMenu.on('pointerout', () => {
