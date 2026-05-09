@@ -69,13 +69,26 @@ class AnimacionScene extends Phaser.Scene {
     }
 }
 
-const config = {
+/*const config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
     parent: 'game-container',
     backgroundColor: '#000000',
     scene: AnimacionScene,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    }
+};
+*/
+const config = {
+    type: Phaser.AUTO,
+    parent: 'game-container',
+    width: 800,
+    height: 600,
+    backgroundColor: '#000000',
+    scene: [MenuScene, AnimacionScene, Creditos],
     scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH
