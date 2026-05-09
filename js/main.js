@@ -11,7 +11,7 @@ class GameScene extends Phaser.Scene
         this.load.image('player', 'https://labs.phaser.io/assets/sprites/phaser-dude.png')
     }
 
-    create () 
+    create ()
     {
         this.laberinto = this.add.image(400, 300, 'laberinto');
         this.laberinto.setScale(0.8);

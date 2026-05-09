@@ -41,7 +41,7 @@ class Creditos extends Phaser.Scene {
             align: 'center'
         }).setOrigin(0.5, 0.5);
 
-        this.add.text(400, 400, 'Valeria Becerra Rendon - 30000139481', {
+        this.add.text(400, 400, 'Valeria Becerra Rendón - 30000139481', {
             fontSize: '25px',
             fill: '#cccccc',
             align: 'center'
