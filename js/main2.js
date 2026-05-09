@@ -28,10 +28,11 @@ class AnimacionScene extends Phaser.Scene {
             frameRate: 10,
             repeat: -1
         });
-
         this.player = this.add.sprite(400, 300, 'robot');
         this.player.play('quieto'); // empieza quieto
         this.cursors = this.input.keyboard.createCursorKeys();
+        this.player.flipX = false; // inicialmente mira a la derecha
+
     }
 
     update() {
@@ -39,9 +40,11 @@ class AnimacionScene extends Phaser.Scene {
 
         if (this.cursors.left.isDown) {
             this.player.x -= 3;
+            this.player.flipX = false; // girar a la izquierda
             moviendose = true;
         } else if (this.cursors.right.isDown) {
             this.player.x += 3;
+            this.player.flipX = true; // girar a la derecha
             moviendose = true;
         }
 
@@ -71,7 +74,12 @@ const config = {
     width: 800,
     height: 600,
     parent: 'game-container',
-    scene: AnimacionScene
+    backgroundColor: '#000000',
+    scene: AnimacionScene,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    }
 };
 
 new Phaser.Game(config);
