@@ -41,7 +41,7 @@ class MenuScene extends Phaser.Scene {
         }).setOrigin(0.5, 0.5).setInteractive();
 
         botonJugar.on('pointerdown', () =>{
-            this.scene.start('GameScene');
+            this.scene.start('AnimacionScene');
         });
 
         botonJugar.on('pointerover', () =>{

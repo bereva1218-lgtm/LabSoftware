@@ -2,36 +2,103 @@ class AnimacionScene extends Phaser.Scene {
     constructor() {
         super({ key: 'AnimacionScene' });
     }
+<<<<<<< HEAD
     preload(){
         this.load.spritesheet('robot','https://labs.phaser.io/assets/sprites/ufo.png',
             { frameWidth: 107, frameHeight: 125});
+=======
+
+    preload() {
+        this.load.spritesheet('robot', 'recursos/robot.png', {
+            frameWidth: 50,
+            frameHeight: 95
+        });
+>>>>>>> a7d7a05efe4dd3219bd31c705333895678308e46
     }
 
-    create(){
-    this.anims.create({
-        key: 'caminar',
-        frames: this.anims.generateFrameNumbers('robot', {
-            start: 0,
-            end: 6
-        }),
-        frameRate: 10,
-        repeat: -1
-    });
+    create() {
+        // Animación quieto (frames 0-3)
+        this.anims.create({
+            key: 'quieto',
+            frames: this.anims.generateFrameNumbers('robot',
+            { start: 0,
+            end: 3 }),
+            frameRate: 5,
+            repeat: -1
+        });
 
-     // Crear sprite
+        // Animación caminar (frames 4-10)
+        this.anims.create({
+            key: 'caminar',
+            frames: this.anims.generateFrameNumbers('robot', { start: 4, end: 10 }),
+            frameRate: 10,
+            repeat: -1
+        });
         this.player = this.add.sprite(400, 300, 'robot');
+        this.player.play('quieto'); // empieza quieto
+        this.cursors = this.input.keyboard.createCursorKeys();
+        this.player.flipX = false; // inicialmente mira a la derecha
 
-        // Reproducir animación
-        this.player.play('caminar');
+    }
+
+    update() {
+        let moviendose = false;
+
+        if (this.cursors.left.isDown) {
+            this.player.x -= 3;
+            this.player.flipX = false; // girar a la izquierda
+            moviendose = true;
+        } else if (this.cursors.right.isDown) {
+            this.player.x += 3;
+            this.player.flipX = true; // girar a la derecha
+            moviendose = true;
+        }
+
+        if (this.cursors.up.isDown) {
+            this.player.y -= 3;
+            moviendose = true;
+        } else if (this.cursors.down.isDown) {
+            this.player.y += 3;
+            moviendose = true;
+        }
+
+        this.player.x = Phaser.Math.Clamp(this.player.x, 20, 780);
+        this.player.y = Phaser.Math.Clamp(this.player.y, 20, 580);
+
+        if (moviendose) {
+            if (this.player.anims.currentAnim?.key !== 'caminar') {
+                this.player.play('caminar');
+            }
+        } else if (this.player.anims.currentAnim?.key !== 'quieto') {
+            this.player.play('quieto');
+        }
     }
 }
 
-const config = {
+/*const config = {
     type: Phaser.AUTO,
     width: 800,
     height: 600,
     parent: 'game-container',
-    scene: AnimacionScene
+    backgroundColor: '#000000',
+    scene: AnimacionScene,
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    }
+};
+*/
+const config = {
+    type: Phaser.AUTO,
+    parent: 'game-container',
+    width: 800,
+    height: 600,
+    backgroundColor: '#000000',
+    scene: [MenuScene, AnimacionScene, Creditos],
+    scale: {
+        mode: Phaser.Scale.FIT,
+        autoCenter: Phaser.Scale.CENTER_BOTH
+    }
 };
 
 new Phaser.Game(config);

@@ -8,14 +8,14 @@ class GameScene extends Phaser.Scene
     preload () 
     {
         this.load.image('laberinto', 'recursos/laberinto.png');
-        this.load.image('player', 'https://labs.phaser.io/assets/sprites/ufo.png')
+        this.load.image('robot', 'recursos/robot.png');
     }
 
-    create () 
+    create ()
     {
         this.laberinto = this.add.image(400, 300, 'laberinto');
         this.laberinto.setScale(0.8);
-        this.player = this.add.image(400, 300, 'player');
+        this.player = this.add.image(400, 300, 'robot');
         this.player.setScale(1);
         this.tiempo =60;
         this.gameOver = false;
@@ -112,4 +112,5 @@ const config = {
 };
 
 const game = new Phaser.Game(config);
+
 
