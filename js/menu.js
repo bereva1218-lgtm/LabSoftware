@@ -4,8 +4,7 @@ class MenuScene extends Phaser.Scene {
         super({ key: 'MenuScene' });
     }
     preload(){
-        /*this.load.image('player', 'https://labs.phaser.io/assets/sprites/phaser-dude.png');
-        this.load.image('ghost', 'https://labs.phaser.io/assets/sprites/ghost.png'); */
+    this.load.image('robot', 'https://labs.phaser.io/assets/sprites/ufo.png');
     }
 
     create(){
@@ -22,7 +21,7 @@ class MenuScene extends Phaser.Scene {
         }).setOrigin(0.5, 0);
 
         //Añadir imagen
-        //this.add.image(400, 260, 'ghost').setScale(0.4).setOrigin(0.5, 0.8);
+        this.add.image(400, 260, 'robot').setScale(2).setOrigin(0.5, 0.8);
 
         //Añadir instrucciones
 
@@ -62,8 +61,8 @@ class MenuScene extends Phaser.Scene {
             borderRadius: 25
         }).setOrigin(0.5, 0.5).setInteractive();
 
-        botonCreditos.on('pointerdown', () =>{
-            this.scene.start('Creditos');
+           botonCreditos.on('pointerdown', () =>{
+         this.scene.start('Creditos');
         });
 
         botonCreditos.on('pointerover', () =>{

@@ -8,7 +8,7 @@ class GameScene extends Phaser.Scene
     preload () 
     {
         this.load.image('laberinto', 'recursos/laberinto.png');
-        this.load.image('player', 'https://labs.phaser.io/assets/sprites/phaser-dude.png')
+        this.load.image('player', 'https://labs.phaser.io/assets/sprites/ufo.png')
     }
 
     create () 
