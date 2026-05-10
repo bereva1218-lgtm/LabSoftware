@@ -2,18 +2,12 @@ class AnimacionScene extends Phaser.Scene {
     constructor() {
         super({ key: 'AnimacionScene' });
     }
-<<<<<<< HEAD
-    preload(){
-        this.load.spritesheet('robot','https://labs.phaser.io/assets/sprites/ufo.png',
-            { frameWidth: 107, frameHeight: 125});
-=======
 
     preload() {
         this.load.spritesheet('robot', 'recursos/robot.png', {
             frameWidth: 50,
             frameHeight: 95
         });
->>>>>>> a7d7a05efe4dd3219bd31c705333895678308e46
     }
 
     create() {

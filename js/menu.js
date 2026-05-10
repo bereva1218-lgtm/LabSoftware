@@ -4,7 +4,7 @@ class MenuScene extends Phaser.Scene {
         super({ key: 'MenuScene' });
     }
     preload(){
-    this.load.image('robot', 'https://labs.phaser.io/assets/sprites/ufo.png');
+    //this.load.image('robot', 'recursos/robot.png');
     }
 
     create(){
