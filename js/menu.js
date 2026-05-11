@@ -13,7 +13,7 @@ class MenuScene extends Phaser.Scene {
 
         //titulo
         this.add.text(400, 100, '¡WELCOME TO \n THE MAZE!',{
-        fontSize: '42px',
+        fontSize: '35px',
         textAlign: 'center',
         fill: '#fff',
         fontStyle: 'bold',
@@ -24,7 +24,6 @@ class MenuScene extends Phaser.Scene {
         this.add.image(400, 260, 'robotMenu').setScale(1).setOrigin(0.5, 0.6);
 
         //Añadir instrucciones
-
         this.add.text(400, 340, 'Usa las flechas para moverte por el laberinto\n y resuelve cada acertijo para avanzar', {
         fontSize: '25px',
         fill: '#fff',
@@ -33,9 +32,9 @@ class MenuScene extends Phaser.Scene {
 
         //Botón Jugar
         let botonJugar = this.add.text(400, 400, 'JUGAR', {
-            fontSize: '32px', 
-            fill: '#000',
-            backgroundColor: '#fff',
+            fontSize: '25px',
+            fill: '#ffffff',
+            backgroundColor: ' #0077ff',
             padding: { x: 20, y: 10 },
             borderRadius: 35
         }).setOrigin(0.5, 0.5).setInteractive();
@@ -45,24 +44,24 @@ class MenuScene extends Phaser.Scene {
         });
 
         botonJugar.on('pointerover', () =>{
-            botonJugar.setStyle({ fill: 'rgb(255, 221, 27)' });
+            botonJugar.setStyle({ fill: ' #004088' });
         })
 
         botonJugar.on('pointerout', () =>{
-            botonJugar.setStyle({ fill: '#000' });
+            botonJugar.setStyle({ fill: '#ffffff' });
         });
 
         //Botón Ver Créditos
         let botonCreditos = this.add.text(400, 470, 'VER CRÉDITOS', {
             fontSize: '24px',
-            fill: '#000',
-            backgroundColor: '#00ff00',
+            fill: '#ffffff',
+            backgroundColor: ' #0077ff',
             padding: { x: 15, y: 8 },
             borderRadius: 25
         }).setOrigin(0.5, 0.5).setInteractive();
 
-           botonCreditos.on('pointerdown', () =>{
-         this.scene.start('Creditos');
+        botonCreditos.on('pointerdown', () =>{
+        this.scene.start('Creditos');
         });
 
         botonCreditos.on('pointerover', () =>{

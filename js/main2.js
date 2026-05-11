@@ -8,19 +8,23 @@ class AnimacionScene extends Phaser.Scene {
             frameWidth: 50,
             frameHeight: 95
         });
-        this.load.image('laberinto', 'recursos/laberinto.png');
+        
+        this.load.image('background',
+            'recursos/background.png');
     }
 
     create() {
-        this.laberinto= this.add.image(400, 300, 'laberinto');
-        this.laberinto.setScale(0.8);
+        this.add.image(0,0,'background').setOrigin(0);
+        //  Set the camera bounds to be the size of the image
+        this.cameras.main.setBounds(0, 0, 1920, 1080);
+
         // Animación quieto (frames 0-3)
         this.anims.create({
             key: 'quieto',
             frames: this.anims.generateFrameNumbers('robot',
             { start: 0,
             end: 3 }),
-            frameRate: 5,
+            frameRate: 10,
             repeat: -1
         });
 
@@ -35,10 +39,13 @@ class AnimacionScene extends Phaser.Scene {
         this.player.play('quieto'); // empieza quieto
         this.cursors = this.input.keyboard.createCursorKeys();
         this.player.flipX = false; // inicialmente mira a la derecha
+        
+        // Hacer que la cámara siga al jugador
+        this.cameras.main.startFollow(this.player);
 
     }
 
-    update() {
+    update(time, delta) {
         let moviendose = false;
 
         if (this.cursors.left.isDown) {
@@ -59,8 +66,8 @@ class AnimacionScene extends Phaser.Scene {
             moviendose = true;
         }
 
-        this.player.x = Phaser.Math.Clamp(this.player.x, 20, 780);
-        this.player.y = Phaser.Math.Clamp(this.player.y, 20, 580);
+        this.player.x = Phaser.Math.Clamp(this.player.x, 0, 1600); //cambiarle valores para que no se oculte
+        this.player.y = Phaser.Math.Clamp(this.player.y, 0, 1150);
 
         if (moviendose) {
             if (this.player.anims.currentAnim?.key !== 'caminar') {
