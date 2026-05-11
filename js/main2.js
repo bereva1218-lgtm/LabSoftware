@@ -8,9 +8,12 @@ class AnimacionScene extends Phaser.Scene {
             frameWidth: 50,
             frameHeight: 95
         });
+        this.load.image('laberinto', 'recursos/laberinto.png');
     }
 
     create() {
+        this.laberinto= this.add.image(400, 300, 'laberinto');
+        this.laberinto.setScale(0.8);
         // Animación quieto (frames 0-3)
         this.anims.create({
             key: 'quieto',

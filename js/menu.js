@@ -4,7 +4,7 @@ class MenuScene extends Phaser.Scene {
         super({ key: 'MenuScene' });
     }
     preload(){
-    //this.load.image('robot', 'recursos/robot.png');
+        this.load.image('robotMenu', 'recursos/robotMenu.png');
     }
 
     create(){
@@ -21,7 +21,7 @@ class MenuScene extends Phaser.Scene {
         }).setOrigin(0.5, 0);
 
         //Añadir imagen
-        this.add.image(400, 260, 'robot').setScale(2).setOrigin(0.5, 0.8);
+        this.add.image(400, 260, 'robotMenu').setScale(1).setOrigin(0.5, 0.6);
 
         //Añadir instrucciones
 

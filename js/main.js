@@ -9,7 +9,6 @@ class GameScene extends Phaser.Scene
     {
         this.load.image('laberinto', 'recursos/laberinto.png');
         this.load.image('robot', 'recursos/robot.png');
-
     }
 
     create ()
